@@ -15,7 +15,7 @@ export const Container = styled.div`
 export const Content = styled.div`
     width: 90vw;
     max-width: 451px;
-    height: 400px;
+    height: 450px;
     margin: 0 auto;
     background-color: #F2F4F9;
     border-radius: 13px;
@@ -39,7 +39,6 @@ export const Content = styled.div`
     }
 
     form {
-        margin: 80px 0;
         max-width: 340px;
         text-align: center;
 
@@ -63,21 +62,22 @@ export const Content = styled.div`
     }
 
     > a {
-    color: #ff9000;
-    display: block;
-    margin-top: 24px;
-    text-decoration: none;
-    transition: color 0.2s;
+      color: #0044E9;
+      display: block;
+      margin-top: 7px;
+      text-decoration: none;
+      transition: color 0.2s;
 
-    display: flex;
-    align-items: center;
+      display: flex;
+      align-items: center;
 
+      
     svg {
       margin-right: 16px;
     }
 
     &:hover {
-      color: ${shade(0.2, '#ff9000')};
+        color: ${shade(0.2, '#0044E9')};
     }
   }
 `;

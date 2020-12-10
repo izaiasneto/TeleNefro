@@ -3,8 +3,10 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { Link, useHistory } from 'react-router-dom';
 
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../Utils/getValidationErros';
 
 import Button from '../../components/button';
@@ -21,6 +23,9 @@ const SignIn: React.FC = () => {
     const formRef = useRef<FormHandles>(null)
 
     const { signIn } = useAuth();
+    const { addToast } = useToast();
+
+    const history = useHistory();
 
     const handleSubmit = useCallback( async (data: SignInFormData) =>{
       try {
@@ -35,18 +40,33 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
-        signIn({
+        await signIn({
           email: data.email,
           password: data.password,
         })
+
+        history.push('/dashboard');
+
+        addToast({
+          type: 'success',
+          title: 'Logado com sucesso!',
+        });
   
       } catch (err) {
   
-        const errors = getValidationErrors(err);
+        if( err instanceof Yup.ValidationError){
+          const errors = getValidationErrors(err);
   
-        formRef.current?.setErrors(errors);
+          formRef.current?.setErrors(errors);
+        }
+        
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação',
+          description: 'Ocorreu um erro ao fazer login'
+        });
       }
-    }, [signIn]);
+    }, [signIn, addToast, history]);
 
     return (
         <Container>
@@ -62,6 +82,11 @@ const SignIn: React.FC = () => {
 
                     <a href="forgot">Esqueci minha senha</a>
                 </Form>
+                <Link to="/signup">
+                    <FiLogIn />
+                    Criar conta
+                </Link>
+                
             </Content>
         </Container>
     )

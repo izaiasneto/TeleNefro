@@ -3,6 +3,11 @@ import { FiArrowLeft, FiMail, FiLock, FiUser} from 'react-icons/fi';
 import { FormHandles } from '@unform/core'
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
+import { Link, useHistory } from 'react-router-dom';
+import api from '../../services/api';
+
+import { useToast } from '../../hooks/toast';
+
 import getValidationErrors from '../../Utils/getValidationErros';
 
 import Button from '../../components/button';
@@ -10,10 +15,18 @@ import Input from '../../components/input';
 
 import { Container, Content} from './styles';
 
+interface SignUpFormData {
+  nome: string;
+  email: string;
+  password: string;
+}
+
 const SignIn: React.FC = () => {
     const formRef = useRef<FormHandles>(null)
+    const { addToast } = useToast();
+    const history = useHistory();
 
-    const handleSubmit = useCallback( async (data: object) =>{
+    const handleSubmit = useCallback( async (data: SignUpFormData) =>{
       try {
         formRef.current?.setErrors({});
   
@@ -26,15 +39,34 @@ const SignIn: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-  
+        
+        await api.post('/users', data);
+
+        history.push('/');
+
+        addToast({
+          type: 'success',
+          title: 'Cadastro realizado!',
+          description: 'Você já pode fazer seu logon!'
+        });
   
       } catch (err) {
   
-        const errors = getValidationErrors(err);
+        if( err instanceof Yup.ValidationError){
+          const errors = getValidationErrors(err);
   
-        formRef.current?.setErrors(errors);
+          formRef.current?.setErrors(errors);
+  
+          return;
+        }
+  
+        addToast({
+          type: 'error',
+          title: 'Erro no cadastro',
+          description: 'Ocorreu ao fazer cadastro, tente novamente'
+        });
       }
-    }, []);
+    }, [addToast, history]);
 
     return (
         <Container>
@@ -49,10 +81,10 @@ const SignIn: React.FC = () => {
 
                     <Button type="submit">Cadastrar</Button>
 
-                    <a href="login">
+                    <Link to="/">
                         <FiArrowLeft />
                         Voltar para logon
-                    </a>
+                    </Link>
                 </Form>
             </Content>
         </Container>
