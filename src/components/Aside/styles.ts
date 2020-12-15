@@ -1,15 +1,35 @@
 import styled, { css } from 'styled-components';
+import { Link } from "react-router-dom";
 
 interface MenuItemLinkprops {
     active?: boolean;
 }
 
-export const Container = styled.div`
+interface IContainerProps {
+    menuIsOpen: boolean;
+}
+
+export const Container = styled.div<IContainerProps>`
     grid-area: AS;
 
     background-color: #fff;
 
+    position: relative;
 
+    @media(max-width: 600px){
+        padding-left: 7px;
+        position: fixed;
+        z-index: 2;
+
+        height: ${props => props.menuIsOpen ? '100vh' : '70px'};
+        overflow: hidden;
+
+        ${props => !props.menuIsOpen && css`
+            border: none;
+            background-color: #f2f4f9;
+            border-bottom: 2px solid #e3e8f4;
+        `};
+    }
 `;
 
 export const Header = styled.header`
@@ -27,6 +47,11 @@ export const Logo = styled.h1`
 
     margin-left: 49px;
 
+    @media(max-width: 600px){
+        
+        
+    }
+
 `;
 
 export const MenuContainer = styled.nav`
@@ -36,7 +61,7 @@ export const MenuContainer = styled.nav`
     
     margin-top: -26px;
 `;
-export const MenuItemLink = styled.a<MenuItemLinkprops>`
+export const MenuItemLink = styled(Link)<MenuItemLinkprops>`
     color: #000;
     text-decoration: none;
     font-size: 20px;
@@ -52,8 +77,8 @@ export const MenuItemLink = styled.a<MenuItemLinkprops>`
     transition: background-color 0.6s;
 
     &:hover {
-        background-color: #0044e9;
-        color: #fff;
+        //background-color: #0044e9;
+        color: #0044e9;
     }
 
     & + a {
@@ -63,6 +88,11 @@ export const MenuItemLink = styled.a<MenuItemLinkprops>`
     ${props => props.active && css`
         background-color: #0044e9;
         color: #fff;
+
+        &:hover {
+        //background-color: #0044e9;
+        color: #fff;
+    }
     `}
 
     > svg {

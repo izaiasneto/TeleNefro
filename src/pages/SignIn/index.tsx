@@ -46,11 +46,6 @@ const SignIn: React.FC = () => {
         })
 
         history.push('/dashboard');
-
-        addToast({
-          type: 'success',
-          title: 'Logado com sucesso!',
-        });
   
       } catch (err) {
   

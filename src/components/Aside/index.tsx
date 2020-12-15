@@ -2,11 +2,9 @@ import React from 'react';
 
 import { 
     HiOutlineHome,
-    HiOutlineCalendar,
     HiOutlineUserAdd,
     HiOutlineUser,
     HiOutlineClipboardList,
-    HiOutlinePencilAlt,
     HiOutlineCog,
 } from 'react-icons/hi';
 
@@ -19,38 +17,31 @@ import {
 } from './styles';
 
 const Aside: React.FC = () => {
+
     return (
-        <Container>
+        <Container menuIsOpen={false}>
             <Header>
                 <Logo>TeleNefro</Logo>
             </Header>
 
             <MenuContainer>
-                <MenuItemLink href="#" active>
+                <MenuItemLink to="/" active>
                     <HiOutlineHome size={24} />
                     Início
                 </MenuItemLink>
-                <MenuItemLink href="#">
-                    <HiOutlineCalendar  />
-                    Agenda
-                </MenuItemLink>
-                <MenuItemLink href="#">
+                <MenuItemLink to="/cadastrar">
                     <HiOutlineUserAdd  />
                     Cadastrar PEP
                 </MenuItemLink>
-                <MenuItemLink href="#">
+                <MenuItemLink to="/consultar">
                     <HiOutlineUser />
                     Consultar PEP
                 </MenuItemLink>
-                <MenuItemLink href="#">
+                <MenuItemLink to="/preescrever">
                     <HiOutlineClipboardList />
                     Prescrição Médica
                 </MenuItemLink>
-                <MenuItemLink href="#">
-                    <HiOutlinePencilAlt  />
-                    Autenticação
-                </MenuItemLink>
-                <MenuItemLink href="#">
+                <MenuItemLink to="/config">
                     <HiOutlineCog />
                     Configurações
                 </MenuItemLink>

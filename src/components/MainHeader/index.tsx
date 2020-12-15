@@ -1,22 +1,39 @@
 import React from 'react';
 
-import { Container, Profile, Add, Welcome } from './styles';
+import { useAuth } from '../../hooks/auth';
+import { Container, Profile, Welcome } from './styles';
+import semAvatar from '../../assets/semavatar.png';
+
+import { FiPower } from 'react-icons/fi'
 
 const MainHeader: React.FC = () => {
+
+    const { signOut, user } = useAuth();
+
     return (
         <Container>
-            <Add>
-                <a href="#">+</a>
-            </Add>
             <Profile>
                 <Welcome>
-                    <img src="https://avatars3.githubusercontent.com/u/41602936?s=460&u=87ad6fc81be492184eaeaae98cbf2b92934b205f&v=4"/>
+                    { user.avatar ? (
+                        <img src={semAvatar}/>
+                     ) : ( 
+                        <img src={user.avatar}/> 
+                        )
+                    }
+                    
                     <div>
-                        <strong>Izaias</strong>
+                        <strong>Dr(a). {user.name}</strong>
                         <p>Nefrologista</p>
                     </div>
                 </Welcome>
             </Profile>
+            <button
+                type="button" 
+                onClick={signOut}
+            >
+                <FiPower />
+            </button>
+            
         </Container>     
     )
 };

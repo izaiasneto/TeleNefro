@@ -14,32 +14,21 @@ export const Container = styled.div`
     padding: 0 30px;
 
     border-bottom: 2px solid #e3e8f4;
+
+    > button {
+        margin-left: auto;
+        background: transparent;
+        border: 0;
+
+        svg {
+            color: #999591;
+            width: 20px;
+            height: 20px;
+        }
+    }
 `;
 
 export const Profile = styled.div`
-`;
-
-export const Add = styled.div`
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    padding: 13px;
-    border-radius: 50%;
-
-    background: #0044e9;
-    transition: background-color 0.2s;
-   
-
-    &:hover {
-        background: ${shade(0.2, '#0044E9')};
-    } 
-
-    a {
-        font-size: 20px;
-        font-weight: 700;
-        text-decoration: none;
-        color: #fff;
-    } 
 `;
 
 export const Welcome = styled.div`
