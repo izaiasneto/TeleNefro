@@ -29,10 +29,11 @@ export const Container = styled.li`
 
 `;
 
-export const Info = styled.div`
+export const Info = styled.a`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-decoration: none;
 
     > img {
         width: 30px;
@@ -50,6 +51,11 @@ export const Info = styled.div`
 
         > span {
             font-weight: 700;
+            color: #0044E9;
+        }
+
+        > small {
+            color: #000;
         }
         
     }

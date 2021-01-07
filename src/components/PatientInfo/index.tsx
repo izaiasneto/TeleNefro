@@ -13,7 +13,7 @@ interface IPatientInfo {
 const PatientInfo: React.FC<IPatientInfo> = ({ name, date}) => {
     return (
        <Container>
-           <Info>
+           <Info href="/consultar/paciente">
                 <img src={semAvatar}/>
                 <div>
                     <span>{name}</span>

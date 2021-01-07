@@ -21,9 +21,6 @@ const Historic: React.FC = ({ }) => {
                     <MenuItemLink to="/">
                         Consultas passadas
                     </MenuItemLink>
-                    <MenuItemLink to="/">
-                        Registros médicos
-                    </MenuItemLink>
                 </MenuContainer>
             </header>
 

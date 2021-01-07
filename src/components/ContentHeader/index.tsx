@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlineRight, AiOutlinePrinter} from 'react-icons/ai';
+import { AiOutlineRight} from 'react-icons/ai';
 
 import { 
     Container,
@@ -13,7 +13,7 @@ interface IContentHeaderProps {
     subtitle?: string;
 }
 
-const ContentHeader: React.FC<IContentHeaderProps> = ({ title, subtitle }) => {
+const ContentHeader: React.FC<IContentHeaderProps> = ({ title, subtitle, children }) => {
     return (
         <Container>
             <TitleContainer>
@@ -30,10 +30,7 @@ const ContentHeader: React.FC<IContentHeaderProps> = ({ title, subtitle }) => {
                 </Route>
             </TitleContainer>
             <Controllers>
-                <button type="button">
-                    <AiOutlinePrinter />
-                </button>
-                <button type="button">Editar PREP</button>
+                {children}
             </Controllers>
         </Container>     
     )

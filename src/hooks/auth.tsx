@@ -56,7 +56,7 @@ const AuthProvider: React.FC = ({ children }) => {
     const signOut = useCallback(() => {
         localStorage.removeItem('@NefroSystem:token');
         localStorage.removeItem('@NefroSystem:user');
-    
+        
         setData({} as AuthState);
       }, [])
 

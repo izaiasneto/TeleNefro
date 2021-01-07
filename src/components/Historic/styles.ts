@@ -23,7 +23,7 @@ export const Container = styled.div`
 
 export const MenuContainer = styled.nav`
     display: flex;
-    justify-content: space-between;
+    justify-content: normal;
     align-items: center;
     border-radius: 7px;
     padding: 30px 20px;

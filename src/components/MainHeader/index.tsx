@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
 import { Container, Profile, Welcome } from './styles';
@@ -9,6 +10,15 @@ import { FiPower } from 'react-icons/fi'
 const MainHeader: React.FC = () => {
 
     const { signOut, user } = useAuth();
+
+    const history = useHistory();
+
+    const handleSignOut = () =>{   
+        signOut()
+
+        history.push('/');
+    
+    };
 
     return (
         <Container>
@@ -29,7 +39,7 @@ const MainHeader: React.FC = () => {
             </Profile>
             <button
                 type="button" 
-                onClick={signOut}
+                onClick={handleSignOut}
             >
                 <FiPower />
             </button>
